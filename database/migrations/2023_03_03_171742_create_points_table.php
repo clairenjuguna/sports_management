@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('points', function (Blueprint $table) {
-            $table->id();
+            $table->id('points_id');
+            $table->foreignId('team_id')->constrained('teams');
+            $table->foreignId('game_id')->constrained('games');
+            $table->foreignId('player_id')->constrained('student_athletes');
+            $table->integer('points_scored');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamps();
         });
     }

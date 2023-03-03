@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('communication', function (Blueprint $table) {
-            $table->id();
+            $table->id('comm_id');
+            $table->foreignId('sender_id')->constrained('users');
+            $table->foreignId('recipient_id')->constrained('users');
+            $table->text('message');
+            $table->timestamp('timestamp')->useCurrent();
             $table->timestamps();
         });
     }

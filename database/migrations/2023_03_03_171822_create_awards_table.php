@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('awards', function (Blueprint $table) {
-            $table->id();
+            $table->id('award_id');
+            $table->string('type');
+            $table->foreignId('recipient_id')->constrained('users');
+            $table->string('recipient_name');
+            $table->date('date');
+            $table->time('time');
             $table->timestamps();
         });
     }

@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attendance', function (Blueprint $table) {
-            $table->id();
+            $table->id('attendance_id');
+            $table->foreignId('team_id')->constrained('teams');
+            $table->foreignId('student_id')->constrained('student_athletes');
+            $table->foreignId('coach_id')->constrained('coaches');
+            $table->date('date');
+            $table->time('time');
+            $table->boolean('present')->default(false);
+            $table->foreignId('name')->constrained('users');
             $table->timestamps();
         });
     }

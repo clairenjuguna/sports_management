@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('budget', function (Blueprint $table) {
-            $table->id();
+            $table->id('budget_id');
+            $table->foreignId('department_id')->constrained('departments');
+            $table->double('amount');
+            $table->date('date');
             $table->timestamps();
         });
     }

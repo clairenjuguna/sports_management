@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('student_athlete', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->foreignId('team_id')->constrained('teams');
+            $table->string('major');
+            $table->decimal('GPA', 3, 2);
+            $table->string('academic_status');
             $table->timestamps();
         });
     }

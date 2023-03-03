@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('academic_progress', function (Blueprint $table) {
-            $table->id();
+            $table->id('progress_id');
+            $table->foreignId('student_id')->constrained('student_athletes');
+            $table->string('term');
+            $table->json('courses_taken')->nullable();
+            $table->json('grades')->nullable();
             $table->timestamps();
         });
     }
