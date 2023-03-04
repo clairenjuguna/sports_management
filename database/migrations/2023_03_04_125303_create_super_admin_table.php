@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('budget', function (Blueprint $table) {
-            $table->id('budget_id');
-            $table->foreignId('department_id')->constrained('departments');
-            $table->double('amount');
-            $table->date('date');
+        Schema::create('super_admin', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('budget');
+        Schema::dropIfExists('super_admin');
     }
 };

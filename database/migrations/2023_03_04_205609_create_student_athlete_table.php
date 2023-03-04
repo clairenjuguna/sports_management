@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('student_athlete', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('user_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->foreignId('team_id')->constrained('teams');
+            $table->unsignedBigInteger('team_id');
             $table->string('major');
-            $table->decimal('GPA', 3, 2);
+            $table->float('GPA');
             $table->string('academic_status');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('team_id')->references('id')->on('team')->onDelete('cascade');
         });
     }
 

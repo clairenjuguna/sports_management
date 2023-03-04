@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('communication', function (Blueprint $table) {
-            $table->id('comm_id');
-            $table->foreignId('sender_id')->constrained('users');
-            $table->foreignId('recipient_id')->constrained('users');
-            $table->text('message');
-            $table->timestamp('timestamp')->useCurrent();
+        Schema::create('sport', function (Blueprint $table) {
+            $table->id();
+            $table->string('sport_name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('communication');
+        Schema::dropIfExists('sport');
     }
 };
